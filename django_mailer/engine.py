@@ -223,7 +223,8 @@ def send_message(email_message, smtp_connection=None):
         result = constants.RESULT_SENT
     except (SocketError, smtplib.SMTPSenderRefused,
             smtplib.SMTPRecipientsRefused,
-            smtplib.SMTPAuthenticationError):
+            smtplib.SMTPAuthenticationError,
+            smtplib.SMTPDataError):
         result = constants.RESULT_FAILED
 
     if opened_connection:

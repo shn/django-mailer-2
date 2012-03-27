@@ -1,3 +1,5 @@
-django-mailer-2 by Chris Beaven (a fork of James Tauber's django-mailer)
+django-mailer-2 with support for AWS's SES (a fork of Chris Beaven's django-mailer-2 (a fork of James Tauber's django-mailer))
 
 A reusable Django app for queuing the sending of email
+
+Using Amazon Web Service's Simple Email Service (SES) authenticating with SMTP throws certain exception which are not caught by django-mailer-2 by default.
