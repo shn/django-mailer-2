@@ -181,7 +181,8 @@ def send_queued_message(queued_message, smtp_connection=None, blacklist=None,
             result = constants.RESULT_SENT
         except (SocketError, smtplib.SMTPSenderRefused,
                 smtplib.SMTPRecipientsRefused,
-                smtplib.SMTPAuthenticationError), err:
+                smtplib.SMTPAuthenticationError,
+                smtplib.SMTPDataError), err:
             queued_message.defer()
             logger.warning("Message to %s deferred due to failure: %s" %
                             (message.to_address.encode("utf-8"), err))
