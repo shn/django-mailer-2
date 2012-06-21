@@ -13,7 +13,6 @@ except ImportError:
     # Django version < 1.2
     EMAIL_BACKEND_SUPPORT = False
 
-
 class Command(NoArgsCommand):
     help = 'Iterate the mail queue, attempting to send all mail.'
     option_list = NoArgsCommand.option_list + (

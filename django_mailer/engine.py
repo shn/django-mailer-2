@@ -34,16 +34,18 @@ def _message_queue(block_size):
     To avoid an infinite loop, yielded messages *must* be deleted or deferred.
 
     """
-    def get_block():
+    def get_block(allow_pause=False):
         queue = models.QueuedMessage.objects.non_deferred().select_related()
         if block_size:
             queue = queue[:block_size]
+            if allow_pause and settings.PAUSE_TIME_AFTER_SEND_BLOCK and len(queue) > 0:
+                time.sleep(settings.PAUSE_TIME_AFTER_SEND_BLOCK)
         return queue
     queue = get_block()
     while queue:
         for message in queue:
             yield message
-        queue = get_block()
+        queue = get_block(allow_pause=True)
 
 
 def send_all(block_size=500, backend=None):
