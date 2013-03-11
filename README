@@ -1,16 +1,1 @@
-django-mailer-2 with support for AWS's SES (a fork of Chris Beaven's django-mailer-2  which is a fork of James Tauber's django-mailer)
-
-A reusable Django app for queuing the sending of email
-
-Amazon Web Service's Simple Email Service (SES) allow authentication through SMTP, which is nice so that you don't need to use boto anymore.  The problem is that it causes non-standard SMTP exception to be thrown to signify a failed message.  To deal with that, this fork catches SMTPDataError exceptions. 
-
-To work correctly with SSL SMTP, you need to use the django_smtp_ssl.SSLEmailBackend backend (pip install django_smtp_ssl).  Additionally, certain python versions had an error in their SMTP_SSL class that wouldn't initialze the socket correctly (http://bugs.python.org/issue4066).  This bug existed in Python 2.6.1 and was fixed in 2.6.6.  I am not sure when exactly it was fixed.
-
-Sample settings.py:
-EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
-EMAIL_PORT = 465
-EMAIL_HOST_USER = 'username'
-EMAIL_HOST_PASSWORD = 'password'
-EMAIL_USE_TLS = True
-EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
-MAILER_USE_BACKEND = EMAIL_BACKEND
+Fork of pegler/django-mailer-2 (django mailer with Amazon SES support) with added support for a headers parameter for extra headers.
